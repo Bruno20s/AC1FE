@@ -1,0 +1,32 @@
+<section class="card-section">
+  <div class="card" *ngFor="let artigo of artigos">
+    <div class="card-content">
+      <h2 class="card-title">{{ artigo.titulo }}</h2>
+      <p class="card-content-text">{{ artigo.conteudo }}</p>
+      <p class="card-author">Autor: {{ artigo.autor }}</p>
+      <p class="card-date">Data: {{ artigo.data }}</p>
+
+      <div class="comments-section">
+        <h3>Comentários ({{ artigo.comentarios.length }})</h3>
+        <ul class="comment-list">
+          <li *ngFor="let comentario of artigo.comentarios">{{ comentario }}</li>
+        </ul>
+
+        <div class="comment-form">
+          <input 
+            type="text" 
+            [(ngModel)]="novoComentario"
+            placeholder="Adicionar um comentário..."
+          >
+          <button (click)="addComentario(artigo, novoComentario)">Enviar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-actions">
+      <button class="like-button" (click)="curtir(artigo)">
+        Curtir ({{ artigo.likes }})
+      </button>
+    </div>
+  </div>
+</section>
